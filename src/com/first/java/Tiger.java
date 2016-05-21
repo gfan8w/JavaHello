@@ -16,6 +16,7 @@ public class Tiger {
 		
 		System.out.println("current dir:"+System.getProperty("user.dir"));
 		
+		System.out.println("size enum:"+Size.Big);
 		
 		
 		
@@ -69,6 +70,8 @@ public class Tiger {
 		}
 		
 		pWriter.close();
+		
+		
 		
 		
 		
