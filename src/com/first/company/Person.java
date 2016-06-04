@@ -1,6 +1,11 @@
 package com.first.company;
 
-public abstract class Person {
+import java.io.Serializable;
+
+public abstract class Person implements Serializable {
 	
 	public abstract String getDescription();
+	
+	
+	
 }

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="GBK" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2016-05-25T16:34:17</date>
+  <millis>1464165257205</millis>
+  <sequence>0</sequence>
+  <logger>BigInterTest</logger>
+  <level>SEVERE</level>
+  <class>com.first.java.BigIntegerTest</class>
+  <method>main</method>
+  <thread>1</thread>
+  <message>错误:null</message>
+  <exception>
+    <message>java.util.InputMismatchException</message>
+    <frame>
+      <class>java.util.Scanner</class>
+      <method>throwFor</method>
+      <line>864</line>
+    </frame>
+    <frame>
+      <class>java.util.Scanner</class>
+      <method>next</method>
+      <line>1485</line>
+    </frame>
+    <frame>
+      <class>java.util.Scanner</class>
+      <method>nextInt</method>
+      <line>2117</line>
+    </frame>
+    <frame>
+      <class>java.util.Scanner</class>
+      <method>nextInt</method>
+      <line>2076</line>
+    </frame>
+    <frame>
+      <class>com.first.java.BigIntegerTest</class>
+      <method>main</method>
+      <line>30</line>
+    </frame>
+  </exception>
+</record>
+</log>

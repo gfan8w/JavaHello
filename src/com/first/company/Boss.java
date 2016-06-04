@@ -15,4 +15,10 @@ public final class Boss extends Manager {
 		return "East China";
 	}*/
 	
+	@Override 
+	public int hashCode(){
+		return super.hashCode();
+	}
+	
+	
 }
