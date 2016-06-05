@@ -1,14 +1,27 @@
 package com.first.stream;
 
 import java.io.*;
+import java.net.PasswordAuthentication;
 import java.nio.ByteBuffer;
 import java.nio.CharBuffer;
 import java.nio.charset.Charset;
 import java.nio.charset.CharsetDecoder;
+import java.nio.file.CopyOption;
+import java.nio.file.DirectoryStream;
+import java.nio.file.Files;
+import java.nio.file.LinkOption;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
+import java.nio.file.StandardOpenOption;
+import java.nio.file.attribute.BasicFileAttributes;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.Map;
 import java.util.Set;
+
+import javax.naming.spi.DirectoryManager;
 
 import com.first.company.Employee;
 import com.first.company.Orientation;
@@ -164,10 +177,78 @@ public class StreamTest {
 		
 		
 		
+	
+		Path path=Paths.get("hel", "wor","jet");
+		path=path.resolve("hi.txt");
 		
 		
+		
+		Path path2=path.toAbsolutePath();
+		Path root=path2.getRoot();
+		Path path3=root.relativize(path2);
+		
+		File file=path3.toFile();
+		
+		
+		Path temppath=path2;
+		do{
+			File f1=temppath.toFile();
+			Path root1=temppath.getRoot();
+			if( f1.isDirectory() && !f1.toPath().equals(root1) && !f1.exists()){
+				f1.mkdir();
+			}
+			temppath=temppath.getParent();
+		}while(!temppath.equals(root));
+		
+		
+		path.getParent().toFile().mkdirs();
+		
+		
+		BufferedReader inputStream2=Files.newBufferedReader(Paths.get("1.txt"));
+		BufferedWriter bWriter=Files.newBufferedWriter(path, Charset.forName("UTF-8"), StandardOpenOption.CREATE,StandardOpenOption.APPEND);
+		
+		String lines;
+		do{
+			lines=inputStream2.readLine();
+			if(lines!=null)
+				bWriter.write(lines+System.getProperty("line.separator"));
+			
+		}while(lines!=null);
+		bWriter.close();
+		inputStream2.close();
+		
+		
+		
+		Files.move(path, Paths.get(".",path.getFileName().toString()),StandardCopyOption.REPLACE_EXISTING,StandardCopyOption.ATOMIC_MOVE);
+		
+		Files.deleteIfExists(path);
 	
 	
+		Files.createDirectories(Paths.get("aa","bb","cc.txt").getParent());
+		
+		
+		File nFile=new File(Paths.get(".",path.getFileName().toString()).toUri());
+		BasicFileAttributes basicFileAttributes=Files.readAttributes(Paths.get(".",path.getFileName().toString()), BasicFileAttributes.class);
+		
+		SimpleDateFormat simpleDateFormat=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		GregorianCalendar calendar=  new GregorianCalendar();
+		calendar.setTimeInMillis(basicFileAttributes.lastModifiedTime().toMillis());
+		
+		System.out.println(simpleDateFormat.format(calendar.getTime()));
+		
+		
+		
+		try(DirectoryStream<Path> dStream=Files.newDirectoryStream(Paths.get("."),"*.txt")){
+			dStream.forEach(item->{
+				System.out.println(item.getFileName());
+			});
+			
+		}
+		
+		
+		
+		
+		
 	}
 	
 	
